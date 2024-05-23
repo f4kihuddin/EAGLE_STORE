@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="konfirmasi.css" />
+    <link rel="icon" href="img/logo eagle store besar.png">
+    <script src="konfirmasi.js"></script>
+  </head>
+  <body>
+    <div class="slide">
+      <div class="div">
+        <a href="index.html">
+        <img class="element" src="img/3329351-2.png" />
+      </a>
+
+        <div class="overlap-group">
+          <div class="text-wrapper">Konfirmasi Pesanan</div>
+          <div class="overlap">
+            <input class="text-wrapper-2" type="text" name="" value="" placeholder=" User ID ">
+        </div>
+
+        <div class="div-wrapper">
+          <input class="text-wrapper-32" type="text" name="" value="" placeholder=" Nomer WhatsApp ">
+      </div>
+
+        <div class="overlap-2">
+          <input class="text-wrapper-31" type="text" name="" value="" placeholder=" Metode Pembayaran ">
+      </div>
+
+        <div class="overlap-3">
+          <input class="text-wrapper-30" type="text" name="" value="" placeholder=" Nominal TopUp ">
+      </div>
+
+          <div class="text-wrapper-4">User Id</div>
+          <div class="text-wrapper-5">Nominal TopUp</div>
+          <div class="text-wrapper-6">Nomer Whatsapp</div>
+          <div class="text-wrapper-7">Metode Pembayaran</div>
+          <div class="overlap-4">
+            <button type="button" onclick="sendwhatsapp();">Konfirmasi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Mendapatkan nilai parameter userId dan whatsappNumber dari URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var userId = urlParams.get('userId');
+    var whatsappNumber = urlParams.get('whatsappNumber');
+
+    // Mengisi input dengan class text-wrapper-2 dan text-wrapper-32 dengan nilai yang sesuai jika ada
+    if (userId) {
+      document.querySelector('.text-wrapper-2').value = userId;
+    }
+    if (whatsappNumber) {
+      document.querySelector('.text-wrapper-32').value = whatsappNumber;
+    }
+  });
+
+
+
+
+  function sendwhatsapp() {
+  // Ambil nilai dari input fields
+  var userId = document.querySelector('.text-wrapper-2').value;
+  var nomorWhatsapp = document.querySelector('.text-wrapper-32').value;
+  var metodePembayaran = document.querySelector('.text-wrapper-31').value;
+  var nominalTopUp = document.querySelector('.text-wrapper-30').value;
+
+  // Buat pesan yang akan dikirim ke WhatsApp
+  var message = `Konfirmasi Pesanan:%0A%0AUser ID: ${userId}%0ANomer WhatsApp: ${nomorWhatsapp}%0AMetode Pembayaran: ${metodePembayaran}%0ANominal TopUp: ${nominalTopUp}`;
+
+  // Nomor WhatsApp tujuan (ganti dengan nomor WhatsApp Anda, misalnya dengan kode negara)
+  var whatsappNumber = "+6285176768702";
+
+  // Buat URL untuk mengirim pesan melalui WhatsApp
+  var whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${message}`;
+
+  // Arahkan pengguna ke URL WhatsApp
+  window.open(whatsappUrl, '_blank');
+}
+
+
+
+</script>
